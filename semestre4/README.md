@@ -2,7 +2,6 @@
 4° Semestre - 02/2023
 
 Parceiro Acadêmico: Jaia
-<p align="center"><img src="./pro4tech-logo.png" widht="20%"></img>
 
 ## 💻 Nossa proposta
 
@@ -11,10 +10,10 @@ Jaia Software Em um cenário onde a paisagem urbana se compõe de uma mistura de
 ## Modelagem do Banco
 
 ### <p align="center">DER</p>
-<p align="center"><img src="./model-der.png.jpg" widht="20%"></img>
+<p align="center"><img src="./model-der.png" widht="20%"></img>
 
 ### <p align="center">Mer</p>
-<p align="center"><img src="./model-mer.png-.png.jpg" widht="20%"></img>
+<p align="center"><img src="./model-mer.png" widht="20%"></img>
 
 ## Contribuições Individuais
 <details>
@@ -109,7 +108,8 @@ Jaia Software Em um cenário onde a paisagem urbana se compõe de uma mistura de
   
 ```
 <p>A página é estruturada em seções, começando com uma introdução sobre o projeto e suas soluções, seguida por cartões que representam as soluções oferecidas pela empresa. Cada cartão possui um botão "Ver detalhes" que abre um modal com informações adicionais sobre a solução.</p>
-<details>
+</details>
+
 <details>
 <summary><b>AuthController: Controle de Autenticação</b></summary>
 <br>
@@ -159,7 +159,7 @@ public class AuthController {
 }
 ```
 <p>O AuthController recebe solicitações POST na rota `/api/auth/login`, onde um objeto `AuthRequest` contendo o nome de usuário, senha e tipo de documento é enviado no corpo da solicitação. Dependendo do tipo de documento (cnpj ou cpf), o método `login()` chama o serviço de autenticação apropriado (`authenticateCliente` ou `authenticateFuncionario`). Se o tipo de documento não for válido, uma resposta de status 400 é retornada.</p>
-
+</details>
 
 ## Tecnologias Utilizadas
 Spring Boot: Framework utilizado para desenvolver o Back-End do software.
