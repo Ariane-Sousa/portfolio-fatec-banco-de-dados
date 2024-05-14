@@ -15,3 +15,5 @@ Minha abordagem persistente na resolução de problemas complexos me diferencia,
 - [Semestre 2](./semestre2/README.md)
 - [Semestre 3](./semestre3/README.md)
 - [Semestre 4](./semestre4/README.md)
+- [Semestre 5](./semestre6/README.md)
+- [Semestre 6](./semestre5/README.md)
