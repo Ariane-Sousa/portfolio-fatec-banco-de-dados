@@ -19,7 +19,7 @@ A solução para essa demanda será a criação de um sistema desktop onde será
 ## Modelagem do Banco
 
 <p align="center"><img src="./modelagem.jpg" widht="20%"></img>
-<p align="center"><img src="./modelo-.png.jpg" widht="20%"></img>
+<p align="center"><img src="./modelo-.png" widht="20%"></img>
 
 ## Contribuições Individuais
 <details>
@@ -119,16 +119,8 @@ public class vagasDAO {
 }
 ```
   <p>A classe `vagasDAO` possui dois métodos principais: `vagas()` e `candidato()`. O primeiro método é responsável por recuperar os nomes das vagas disponíveis no banco de dados, enquanto o segundo método recupera os CPFs dos candidatos de uma vaga específica.</p>
-  <h3>Tecnologias Utilizadas</h3>
-  <details>
-    <summary><b>Clique para ver a lista de tecnologias utilizadas</b></summary>
-    <br>
-    <p1>Java: Linguagem de programação utilizada para desenvolver a lógica de acesso ao banco de dados.</p1>
-    <p1>JDBC (Java Database Connectivity): API do Java para conexão e interação com bancos de dados relacionais.</p1>
-    <p1>MySQL: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar informações sobre vagas e candidatos.</p1>
-    <p1>JOptionPane: Componente gráfico do Java Swing utilizado para exibir mensagens de erro.</p1>
   </details>
-</details>
+ 
 <details>
   <summary><b>TelaLogin: Interface de Login</b></summary>
   <br>
@@ -256,14 +248,7 @@ public class TelaLogin extends JFrame {
 
 ```
   <p>A classe `TelaLogin` representa a tela de login do sistema. Ela possui campos para inserção do e-mail e senha do usuário, botões para entrar e cadastrar, além de mensagens de erro e informações para orientar o usuário.</p>
-  <h3>Tecnologias Utilizadas</h3>
-  <details>
-    <summary><b>Clique para ver a lista de tecnologias utilizadas</b></summary>
-    <br>
-    <p1>Java Swing: Biblioteca gráfica utilizada para criar a interface de usuário.</p1>
-    <p1>JDBC (Java Database Connectivity): API do Java para conexão e interação com bancos de dados relacionais.</p1>
-    <p1>MySQL: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar informações sobre usuários e autenticação.</p1>
-  </details>
+</details>
 
 ## Tecnologias Utilizadas
 Java: Linguagem de programação utilizada para o desenvolvimento do sistema.
