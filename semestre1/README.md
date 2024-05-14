@@ -7,7 +7,7 @@ Parceiro: Professor Fatec - Fabiano Sabha
 ## 💻 Nossa proposta
 
 Este projeto foi criado com o objetivo de fornecer uma ferramenta eficaz e acessível para auxiliar alunos em seus estudos diários.
-A BETA é uma assistente virtual inteligente, projetada para responder perguntas, fornecer explicações detalhadas, ajudar na organização do tempo de estudo e oferecer recursos educacionais personalizados. Ela utiliza avançados algoritmos de processamento de linguagem natural para entender e responder às necessidades dos alunos de maneira eficiente e intuitiva.
+A BETA é uma assistente virtual inteligente, projetada para responder perguntas, fornecer explicações detalhadas, ajudar na organização do tempo de estudo e oferecer recursos educacionais personalizados. Ela utiliza algoritmos de processamento de linguagem natural para entender e responder às necessidades dos alunos de maneira eficiente e intuitiva.
 
 ## Lições Aprendidas
 
