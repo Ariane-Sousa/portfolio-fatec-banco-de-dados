@@ -1,50 +1,53 @@
 ### Beta
-1° Semestre - 01/2022
+**1° Semestre - 01/2022**
 
-Parceiro: Professor Fatec - Fabiano Sabha
-<p align="center"><img src="beta-logo.png" height=255></img>
+**Parceiro:** Professor Fabiano Sabha - Faculdade de Tecnologia de São José dos Campos (FATEC)
+
+<p align="center"><img src="beta-logo.png" height=255></img></p>
 
 ## 💻 Nossa proposta
 
-Este projeto foi criado com o objetivo de fornecer uma ferramenta eficaz e acessível para auxiliar alunos em seus estudos diários.
-A BETA é uma assistente virtual inteligente, projetada para responder perguntas, fornecer explicações detalhadas, ajudar na organização do tempo de estudo e oferecer recursos educacionais personalizados. Ela utiliza algoritmos de processamento de linguagem natural para entender e responder às necessidades dos alunos de maneira eficiente e intuitiva.
+O projeto **BETA** foi desenvolvido com o propósito de criar uma ferramenta acessível e inteligente que pudesse auxiliar alunos em seus estudos diários. 
+
+A **BETA** é uma assistente virtual, equipada com tecnologia de processamento de linguagem natural, capaz de responder perguntas, oferecer explicações detalhadas, organizar o tempo de estudo e fornecer recursos educacionais personalizados. 
+
+Nossa missão era criar uma solução eficiente, intuitiva e de fácil uso para estudantes, utilizando o poder da tecnologia para facilitar o aprendizado e otimizar o desempenho acadêmico.
 
 ## Lições Aprendidas
 
-<p align="justify"></p>
-<h3>Hard Skills</h3>
+### Hard Skills
 <details>
   <summary><b>Clique para ver a lista de hard skills</b></summary>
-<p1>Desenvolvimento de Software: Fortaleci minhas habilidades em Python criando funcionalidades para a assistente virtual.</p1>
-
-<p1>Uso de Bibliotecas Python: Integrei e utilizei diversas bibliotecas, como SpeechRecognition, Wikipedia, Time, Datetime, Tkinter e Winsound, aprimorando a capacidade da assistente de realizar múltiplas tarefas.</p1>
-
-<p1>Gerenciamento de Projetos: Apliquei a metodologia Scrum para planejamento e execução de sprints, utilizando ferramentas como Trello para gestão de tarefas e GITHUB para controle de versão.</p1>
-
-<p1>Desenvolvimento de Interface: Utilizei Tkinter para criar interfaces gráficas intuitivas e Photoshop para desenvolver e editar elementos visuais.</p1>
-
-<p1>Integração de Sistemas: Desenvolvi habilidades para implementar reconhecimento de voz, e integração com API's.</p1>
-
+  
+- **Desenvolvimento de Software:** Fortaleci minhas habilidades em Python ao criar funcionalidades essenciais para a assistente virtual.
+  
+- **Uso de Bibliotecas Python:** Integrei várias bibliotecas como `SpeechRecognition`, `Wikipedia`, `Tkinter` e `Winsound`, aprimorando a capacidade da assistente em realizar múltiplas tarefas simultâneas.
+  
+- **Gerenciamento de Projetos:** Utilizei a metodologia Scrum para organizar sprints e entregas, gerenciando tarefas com o Trello e versionando o código com GitHub.
+  
+- **Desenvolvimento de Interface:** Criei interfaces gráficas usando `Tkinter` e editei elementos visuais com Photoshop, garantindo uma experiência amigável para o usuário.
+  
+- **Integração de Sistemas:** Desenvolvi habilidades de integração de sistemas, implementando reconhecimento de voz e conectando a assistente com APIs externas.
 </details>
-<h3>Soft Skills</h3>
+
+### Soft Skills
 <details>
   <summary><b>Clique para ver a lista de soft skills</b></summary>
-<p1>Trabalho em Equipe: A colaboração com a equipe foi fundamental, utilizando Discord para comunicação remota e dividindo responsabilidades de forma eficaz.</p1>
 
-<p1>Gestão do Tempo: Planejei e cumpri prazos conforme cronograma de entregas e sprints, demonstrando habilidades sólidas de gestão do tempo.</p1>
+- **Trabalho em Equipe:** Colaborei ativamente com minha equipe, usando o Discord para comunicação remota e dividindo responsabilidades de forma eficiente.
 
-<p1>Comunicação: Desenvolvi habilidades de comunicação ao criar documentação detalhada do projeto e apresentar os resultados na feira de soluções.</p1>
+- **Gestão do Tempo:** Segui rigorosamente o cronograma de entregas e sprints, demonstrando habilidades de organização e respeito aos prazos.
 
-<p1>Resolução de Problemas: Resolvi problemas técnicos e ajustei funcionalidades com base em feedbacks e requisitos do cliente, evidenciando uma abordagem proativa e eficaz.</p1>
+- **Comunicação:** Produzi documentação detalhada e apresentei o projeto em uma feira de soluções, aprimorando minhas habilidades de comunicação e apresentação.
 
+- **Resolução de Problemas:** Enfrentei e resolvi desafios técnicos, ajustando funcionalidades com base em feedbacks e requisitos, mostrando uma abordagem prática e proativa.
 </details>
 
 ## Contribuições Individuais
+
+### Reconhecimento de Voz e Execução de Comandos
 <details>
-  <summary><b>Reconhecimento de Voz e Execução de Comandos</b></summary>
-  <br>
-  <p>O código apresentado é parte do desenvolvimento da assistente virtual BETA, que tem como objetivo realizar o reconhecimento de voz e executar comandos baseados nas entradas de áudio do usuário. Aqui está uma explicação detalhada do funcionamento do código:
-  </p>
+  <summary><b>Clique para ver o código e explicação</b></summary>
   
 ```python
 import speech_recognition as sr
@@ -90,47 +93,42 @@ while True:
                     print('Microfone não está conectado')
                 return comando
 ```
- <p>No código fornecido, o reconhecimento de voz é realizado utilizando a biblioteca `speech_recognition`. A assistente virtual BETA inicia dizendo uma mensagem de boas-vindas através da síntese de voz com `pyttsx3`. Em seguida, entra em um loop infinito para escutar continuamente os comandos do usuário.</p>
-  <p>Dentro do loop, o código captura o áudio do microfone e o transforma em texto utilizando o reconhecimento de voz do Google. Se o texto reconhecido for "beta", a função `executa_comando()` é chamada.</p>
-  <p>A função `executa_comando()` também captura áudio do microfone e transforma em texto, porém, desta vez, após a detecção do "chamado" inicial. Se o comando contiver a palavra "beta", a assistente repete o comando reconhecido em voz alta.</p>
-  <br>
+Este trecho implementa a lógica de reconhecimento de voz usando a biblioteca speech_recognition. A assistente BETA ouve comandos e, ao detectar a palavra-chave "beta", inicia a execução do comando reconhecido.
 </details>
-<details>
-  <summary><b>Gravação de Áudio</b></summary>
-  <br>
-  <p>Neste trecho de código, quando o usuário fala "beta", a assistente inicia a gravação de áudio por 5 segundos. Abaixo está uma explicação detalhada do que acontece:</p>
+
+### Gravação de Áudio
+<details> <summary><b>Clique para ver o código e explicação</b></summary>
   
 ```python
 import sounddevice as sd
 from scipy.io.wavfile import write
 import os
 
-freq = 44100  # Frequência do áudio: 4999 - 64000
-seconds = 5  # Duração da gravação
+freq = 44100
+seconds = 5
 
 gravacao = sd.rec(int(seconds * freq), samplerate=freq, channels=2)
 print("Começando: Fale agora!!")
-sd.wait()  # Comando de inicialização da gravação.
+sd.wait()
 print("Fim da gravação!")
-write('output.wav', freq, gravacao)  # Salva a gravação como arquivo WAV.
-os.startfile("output.wav")           # Abre gravação.
-```  
-  <p>O código utiliza a biblioteca `sounddevice` para capturar áudio do microfone e `scipy.io.wavfile` para salvar a gravação como arquivo WAV.</p>
-  <p>As variáveis `freq` e `seconds` definem a frequência de amostragem do áudio e a duração da gravação, respectivamente. No caso, a gravação dura 5 segundos com uma frequência de 44100 Hz.</p>
-  <p>O comando `sd.rec()` inicia a gravação do áudio com base nas configurações especificadas.</p>
-  <p>Os comandos `print()` exibem mensagens indicando o início e o fim da gravação.</p>
-  <p>O comando `sd.wait()` é responsável por aguardar o término da gravação.</p>
-  <p>Após a gravação, o áudio é salvo como um arquivo WAV utilizando o comando `write()`. O arquivo é nomeado como "output.wav".</p>
-  <p>Finalmente, o comando `os.startfile()` é usado para abrir o arquivo de áudio recém-gravado, reproduzindo-o no sistema padrão do usuário.</p>
-  <br>
+write('output.wav', freq, gravacao)
+os.startfile("output.wav")
+```
+
+Neste código, o áudio é gravado por 5 segundos e salvo como um arquivo .wav. A biblioteca sounddevice captura o áudio, e a gravação é então reproduzida automaticamente.
 </details>
 
 ## Tecnologias Utilizadas
+- Python: A principal linguagem de programação usada para a lógica e funcionalidades da assistente.
+- Tkinter: Biblioteca utilizada para desenvolver a interface gráfica.
+- SpeechRecognition: Usada para o reconhecimento de voz e interpretação de comandos.
+- Pyttsx3: Biblioteca de síntese de voz para interagir com o usuário por meio de respostas audíveis.
 
-Python: Linguagem de programação principal utilizada para desenvolver a lógica da assistente virtual e suas funcionalidades.
+## Conclusão
 
-Tkinter: Biblioteca gráfica do Python utilizada para criar a interface gráfica da aplicação.
+Este projeto foi um marco fundamental no meu desenvolvimento como desenvolvedor, pois me proporcionou uma visão mais ampla e profunda das várias etapas de criação de um software completo, desde a concepção até a implementação final. Trabalhar na BETA me ensinou a importância de equilibrar a parte técnica com as necessidades reais dos usuários. 
 
-SpeechRecognition: Biblioteca do Python para reconhecimento de voz, utilizada para interpretar comandos de voz do usuário.
+Aprender a integrar diferentes bibliotecas e sistemas, enquanto gerenciava o tempo e as entregas em equipe, foi uma experiência desafiadora e recompensadora. Além disso, a implementação de algoritmos de reconhecimento de voz e a criação de uma interface gráfica amigável me fizeram perceber como a tecnologia pode ser poderosa quando aplicada para facilitar a vida das pessoas. 
 
-Pyttsx3: Biblioteca do Python para síntese de voz, utilizada para que a assistente virtual possa falar com o usuário.
+A criação da assistente virtual BETA foi um divisor de águas no meu aprendizado. Ela me ajudou a amadurecer tanto tecnicamente quanto em habilidades interpessoais, mostrando como a colaboração, a comunicação e a capacidade de resolver problemas são essenciais para o sucesso de um projeto. Este projeto me preparou para enfrentar desafios maiores, com confiança de que posso aplicar soluções eficazes e inovadoras em futuros desenvolvimentos.
+
