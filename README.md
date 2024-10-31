@@ -22,5 +22,5 @@ Sou dedicada à minha formação contínua e estou sempre atenta às últimas te
 - [Semestre 2](./semestre2/README.md)
 - [Semestre 3](./semestre3/README.md)
 - [Semestre 4](./semestre4/README.md)
-- [Semestre 5](./semestre6/README.md)
-- [Semestre 6](./semestre5/README.md)
+- [Semestre 5](./semestre5/README.md)
+- [Semestre 6](./semestre6/README.md)
