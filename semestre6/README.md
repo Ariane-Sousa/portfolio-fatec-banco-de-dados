@@ -1,4 +1,4 @@
-### SPC Grafeno
+### Sistema de Previsão e Qualificação de Ativos Financeiros com Machine Learning - SPC Grafeno
 6° Semestre - 02/2024
 
 Parceiro Acadêmico: SPC Grafeno
@@ -11,6 +11,47 @@ Propomos uma solução inovadora para criar produtos financeiros utilizando apre
 - Visualização e Indicadores: Área para explorar datasets e monitorar o desempenho do modelo.
 - Privacidade e Compliance: Coleta de consentimento expresso, acesso e edição de dados pessoais, e exportação de dados em formatos seguros (JSON/CSV), garantindo conformidade legal.
 
+---
+
+## Lições Aprendidas
+
+### **Hard Skills**
+
+Durante o desenvolvimento do projeto, pude aprimorar diversas habilidades técnicas essenciais para o desenvolvimento de uma assistente virtual. Aqui estão as principais **hard skills** que adquiri:
+
+ - **Desenvolvimento Backend com Django**: Criação e manutenção de APIs, autenticação de usuários, e manipulação de dados em um banco de dados relacional (PostgreSQL), garantindo a eficiência e segurança do sistema.
+  
+- **Desenvolvimento Frontend com Vue.js**: Construção de interfaces interativas e responsivas com Vue.js, proporcionando uma experiência de usuário ágil e moderna, além de integração eficaz com o backend.
+  
+- **Banco de Dados Relacional e NoSQL**: Experiência com PostgreSQL para dados principais e MongoDB para armazenar logs e chaves, gerenciando dados de diferentes tipos com eficiência.
+  
+- **Integração com MinIO**: Implementação de backup automatizado de dados e armazenamento seguro em MinIO, utilizando integração com soluções de armazenamento em nuvem para garantir a segurança dos dados.
+  
+- **Automação de Tarefas com Celery**: Criação de tarefas assíncronas para execução de backups periódicos, melhorando a performance e escalabilidade do sistema sem impactar a experiência do usuário.
+  
+- **Desenvolvimento de APIs com FastAPI**: Criação de servidores rápidos e eficientes para integrações de Machine Learning, otimizando a resposta do sistema e garantindo alta performance.
+  
+- **Gerenciamento de Contêineres com Docker**: Uso de Docker para orquestrar múltiplos serviços, como bancos de dados e servidores, com configuração de containers via Docker Compose, facilitando a escalabilidade e o gerenciamento de dependências.
+
+---
+
+### **Soft Skills**
+
+Além das habilidades técnicas, também trabalhei no desenvolvimento de habilidades interpessoais essenciais para o sucesso em um projeto colaborativo. Aqui estão as principais **soft skills** que desenvolvi durante o projeto:
+
+ - **Resolução de Problemas**: Capacidade de identificar e resolver questões técnicas complexas, como a integração de diferentes tecnologias e soluções de backups, mantendo o sistema estável e eficiente.
+
+  - **Gerenciamento de Tempo**: Habilidade para coordenar tarefas e projetos simultâneos, organizando o trabalho de forma eficiente e cumprindo prazos com qualidade.
+
+  - **Trabalho em Equipe**: Colaboração eficaz com outros desenvolvedores e stakeholders, garantindo a integração e o alinhamento das partes do sistema para alcançar os objetivos do projeto.
+
+  - **Comunicação Técnica**: Capacidade de explicar de forma clara e objetiva soluções técnicas, facilitando a compreensão de colegas e stakeholders sobre decisões e implementações feitas no sistema.
+
+  - **Adaptabilidade**: Flexibilidade para aprender e aplicar novas tecnologias conforme as necessidades do projeto, como o uso de Vue.js e FastAPI, adaptando-se a diferentes ferramentas e metodologias.
+
+  - **Atenção aos Detalhes**: Habilidade para garantir a precisão na implementação de funcionalidades e a integridade dos dados, especialmente em processos de backup e segurança, assegurando a confiança no sistema.
+
+---
 ## Contribuições Individuais
 <details>
 <summary><b>Gestão Segura e Organizada de Usuários com Criptografia e Registro de Ações</b></summary>
@@ -502,58 +543,130 @@ Essa abordagem não apenas automatiza o processo de backup, mas também proporci
 </p>
 </details>
 
+---
+## Contribuições Coletivas
+### Aplicação Machine Learning
+<details> <summary><b>Clique para ver o código e explicação</b></summary>
+
+```python
+import pandas as pd
+from sklearn.preprocessing import scale, PowerTransformer
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
+
+
+class RFMClient:
+    def __init__(self, csv_path):
+        self.csv_path = csv_path
+        self.df = None
+        self.df_rfm = None
+        self.cluster_metrics_results = []
+
+    def load_data(self):
+        self.df = pd.read_csv(self.csv_path, encoding='latin1')
+        self.df = self.df[self.df['deleted_at'].isnull()]
+        self.df['created_at'] = pd.to_datetime(self.df['created_at'])
+        self.df = self.df.query('value < 100000 & value > 0')
+
+    def calculate_rfm(self):
+        self.load_data()
+        self.df_rfm = (
+            self.df.groupby('participant_id')
+            .agg(
+                R=('created_at', lambda x: (pd.Timestamp.today() - x.max()).days),
+                F=('asset_id', 'nunique'),
+                M=('value', 'mean'),
+            )
+        )
+        return self.df_rfm.reset_index().to_dict(orient='records')
+
+    def preprocess_rfm(self):
+        self.df_rfm = self.df_rfm.query('F < 100000 & M < 20000')
+        scaler = PowerTransformer()
+        self.df_rfm = pd.DataFrame(
+            scaler.fit_transform(self.df_rfm), 
+            index=self.df_rfm.index, 
+            columns=self.df_rfm.columns
+        )
+        self.df_rfm = self.df_rfm.apply(lambda x: x.clip(upper=x.quantile(0.95)))
+        return self.df_rfm.reset_index().to_dict(orient='records')
+
+    def cluster_rfm(self, n_clusters=4):
+        X = self.df_rfm.copy()
+        kmeans = KMeans(n_clusters=n_clusters, random_state=0)
+        self.df_rfm['Cluster'] = kmeans.fit_predict(X)
+        return self.df_rfm.reset_index().to_dict(orient='records')
+
+    def get_cluster_centers(self):
+        """Retorna os centros dos clusters ajustados com as colunas apropriadas."""
+        kmeans = KMeans(n_clusters=4, random_state=0)
+        X = self.df_rfm.drop(columns=['Cluster'], errors='ignore')
+        kmeans.fit(X)
+        centers = pd.DataFrame(kmeans.cluster_centers_, columns=X.columns)
+        centers.index = [f"Cluster {i+1}" for i in range(len(centers))]
+        return centers.reset_index().to_dict(orient='records')
+
+    def evaluate_clusters(self):
+        X = self.df_rfm.drop(columns=['Cluster'], errors='ignore')
+        for k in range(2, 11):
+            model = KMeans(n_clusters=k, random_state=0)
+            labels = model.fit_predict(X)
+            cluster_results = {
+                'k': k,
+                'inertia': model.inertia_,
+                'silhouette_score': silhouette_score(X, labels),
+                'davies_bouldin_score': davies_bouldin_score(X, labels),
+                'calinski_harabasz_score': calinski_harabasz_score(X, labels),
+            }
+            self.cluster_metrics_results.append(cluster_results)
+        return self.cluster_metrics_results
+```
+
+O projeto desenvolvido consistiu na criação de uma aplicação utilizando Django como servidor Back-End para processar dados de machine learning. O sistema foi projetado para receber dados em formato CSV, calcular métricas de Recência, Frequência e Valor (RFM), e realizar a segmentação de clientes por meio de clustering utilizando KMeans.
+
+Estrutura e Funcionalidade:
+Leitura e Pré-processamento de Dados: A aplicação utiliza a biblioteca Pandas para carregar e filtrar os dados, removendo entradas desnecessárias e ajustando os valores de algumas colunas (como a transformação de created_at para tipo datetime).
+
+Cálculo RFM: A classe RFMClient calcula três métricas chave para análise de comportamento de clientes:
+
+- Recência (R): O número de dias desde a última compra do cliente.
+- Frequência (F): O número de ativos únicos adquiridos por um cliente.
+- Valor Monetário (M): O valor médio das transações feitas pelo cliente.
+  
+Essas métricas são calculadas para cada participant_id, gerando um DataFrame com as informações.
+Pré-processamento dos Dados RFM: A classe aplica a transformação de dados com o PowerTransformer para normalizar as métricas e utiliza a função clip para remover outliers, garantindo que os dados sejam mais adequados para análise de clustering.
+
+Clustering com KMeans: O modelo utiliza o KMeans para agrupar os clientes em clusters com base nas métricas RFM. O número de clusters pode ser ajustado, e a classificação dos clientes em clusters é retornada com o índice do cluster atribuído.
+
+Avaliação dos Clusters: A aplicação avalia a qualidade dos clusters gerados, utilizando métricas como Silhouette Score, Davies-Bouldin Score, e Calinski-Harabasz Score. Essas métricas ajudam a determinar a qualidade do agrupamento e a adequação do número de clusters escolhido.
+
+Implementação Django:
+O Django foi utilizado para criar as rotas de API que recebem os dados e executam os cálculos necessários. O cliente, uma vez configurado, envia os dados via API para o servidor, que processa os dados, calcula as métricas RFM, realiza o clustering e retorna os resultados ao cliente.
+
+Em resumo, a aplicação proporciona uma maneira eficiente de segmentar clientes e avaliar seu comportamento de compra, utilizando técnicas de machine learning em conjunto com uma arquitetura robusta para processamento e comunicação de dados.
+</details>
+
+---
 
 ## Tecnologias Utilizadas
 
-Django (Backend): Framework robusto para gerenciar dados, autenticação e segurança.
-
-Python: Linguagem usada para toda a lógica de negócios e APIs no Back-End.
-
-JavaScript: Linguagem essencial para dinamizar a interface e gerenciar a comunicação entre Back-End e Front-End.
-
-Vue.js (Frontend): Framework JavaScript para criar interfaces de usuário interativas e responsivas.
-
-PostgreSQL: Banco de dados relacional para armazenar dados principais do sistema, como usuários e informações operacionais.
-
-MongoDB: Banco de dados NoSQL utilizado para armazenar logs e chaves de usuário.
-
-FastAPI: Framework para criar servidores rápidos de APIs de Machine Learning.
-
-## Lições Aprendidas
-
-<p align="justify"></p>
-<h3>Hard Skills</h3>
-<details>
-  <summary>Veja mais</summary>
+- **Django (Backend)**: Framework robusto para o gerenciamento de dados, autenticação e segurança, que facilita a criação de APIs e a integração com banco de dados.
   
-  <p1><strong>Desenvolvimento Backend com Django:</strong> Criação e manutenção de APIs, autenticação de usuários, e manipulação de dados em um banco de dados relacional (PostgreSQL), garantindo a eficiência e segurança do sistema.</p1>
-  
-  <p1><strong>Desenvolvimento Frontend com Vue.js:</strong> Construção de interfaces interativas e responsivas com Vue.js, proporcionando uma experiência de usuário ágil e moderna, além de integração eficaz com o backend.</p1>
-  
-  <p1><strong>Banco de Dados Relacional e NoSQL:</strong> Experiência com PostgreSQL para dados principais e MongoDB para armazenar logs e chaves, gerenciando dados de diferentes tipos com eficiência.</p1>
-  
-  <p1><strong>Integração com MinIO:</strong> Implementação de backup automatizado de dados e armazenamento seguro em MinIO, utilizando integração com soluções de armazenamento em nuvem para garantir a segurança dos dados.</p1>
-  
-  <p1><strong>Automação de Tarefas com Celery:</strong> Criação de tarefas assíncronas para execução de backups periódicos, melhorando a performance e escalabilidade do sistema sem impactar a experiência do usuário.</p1>
-  
-  <p1><strong>Desenvolvimento de APIs com FastAPI:</strong> Criação de servidores rápidos e eficientes para integrações de Machine Learning, otimizando a resposta do sistema e garantindo alta performance.</p1>
-  
-  <p1><strong>Gerenciamento de Contêineres com Docker:</strong> Uso de Docker para orquestrar múltiplos serviços, como bancos de dados e servidores, com configuração de containers via Docker Compose, facilitando a escalabilidade e o gerenciamento de dependências.</p1>
-</details>
+- **Python**: Linguagem principal usada para desenvolver a lógica de negócios e as APIs, bem como para integrar soluções de Machine Learning.
 
-<h3>Soft Skills</h3>
-<details>
-  <summary>Veja mais</summary>
+- **JavaScript**: Linguagem essencial para tornar a interface interativa, permitindo a comunicação entre o Front-End e o Back-End.
 
-  <p1><strong>Resolução de Problemas:</strong> Capacidade de identificar e resolver questões técnicas complexas, como a integração de diferentes tecnologias e soluções de backups, mantendo o sistema estável e eficiente.</p1>
+- **Vue.js (Frontend)**: Framework JavaScript utilizado para criar interfaces de usuário dinâmicas, interativas e responsivas.
 
-  <p1><strong>Gerenciamento de Tempo:</strong> Habilidade para coordenar tarefas e projetos simultâneos, organizando o trabalho de forma eficiente e cumprindo prazos com qualidade.</p1>
+- **PostgreSQL**: Banco de dados relacional utilizado para armazenar dados principais do sistema, como informações de usuários e dados operacionais.
 
-  <p1><strong>Trabalho em Equipe:</strong> Colaboração eficaz com outros desenvolvedores e stakeholders, garantindo a integração e o alinhamento das partes do sistema para alcançar os objetivos do projeto.</p1>
+- **MongoDB**: Banco de dados NoSQL utilizado para armazenar logs e chaves de usuário, oferecendo flexibilidade para dados não estruturados.
 
-  <p1><strong>Comunicação Técnica:</strong> Capacidade de explicar de forma clara e objetiva soluções técnicas, facilitando a compreensão de colegas e stakeholders sobre decisões e implementações feitas no sistema.</p1>
+- **FastAPI**: Framework eficiente para a criação de APIs rápidas e de alto desempenho, especialmente utilizado para integrar e servir modelos de Machine Learning.
 
-  <p1><strong>Adaptabilidade:</strong> Flexibilidade para aprender e aplicar novas tecnologias conforme as necessidades do projeto, como o uso de Vue.js e FastAPI, adaptando-se a diferentes ferramentas e metodologias.</p1>
+---
 
-  <p1><strong>Atenção aos Detalhes:</strong> Habilidade para garantir a precisão na implementação de funcionalidades e a integridade dos dados, especialmente em processos de backup e segurança, assegurando a confiança no sistema.</p1>
-</details>
+## Conclusão
+
+Esse projeto me proporcionou uma experiência completa no desenvolvimento de sistemas com integração entre **Back-End** e **Front-End**, além de me permitir aprender como trabalhar com diferentes bancos de dados e integrar modelos de **Machine Learning** em aplicações reais. 
+Aprendi a lidar com dados em grande escala, realizar transformações, e aplicar técnicas de clustering para segmentação de clientes, aprimorando tanto minhas habilidades técnicas quanto de resolução de problemas. Esse conhecimento será fundamental para projetos futuros, especialmente ao integrar mais tecnologias e otimizar a performance do sistema.
