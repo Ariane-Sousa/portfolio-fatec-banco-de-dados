@@ -1,47 +1,51 @@
-### Beta
+### Assistente Virtual - Beta
 **1° Semestre - 01/2022**
 
 **Parceiro:** Professor Fabiano Sabha - Faculdade de Tecnologia de São José dos Campos (FATEC)
 
 <p align="center"><img src="beta-logo.png" height=255></img></p>
 
-## 💻 Nossa proposta
+---
 
-O projeto **BETA** foi desenvolvido com o propósito de criar uma ferramenta acessível e inteligente que pudesse auxiliar alunos em seus estudos diários. 
+## 💻 Nossa proposta
 
 A **BETA** é uma assistente virtual, equipada com tecnologia de processamento de linguagem natural, capaz de responder perguntas, oferecer explicações detalhadas, organizar o tempo de estudo e fornecer recursos educacionais personalizados. 
 
 Nossa missão era criar uma solução eficiente, intuitiva e de fácil uso para estudantes, utilizando o poder da tecnologia para facilitar o aprendizado e otimizar o desempenho acadêmico.
 
+---
+
 ## Lições Aprendidas
 
-### Hard Skills
-<details>
-  <summary><b>Clique para ver a lista de hard skills</b></summary>
-  
-- **Desenvolvimento de Software:** Fortaleci minhas habilidades em Python ao criar funcionalidades essenciais para a assistente virtual.
-  
-- **Uso de Bibliotecas Python:** Integrei várias bibliotecas como `SpeechRecognition`, `Wikipedia`, `Tkinter` e `Winsound`, aprimorando a capacidade da assistente em realizar múltiplas tarefas simultâneas.
-  
-- **Gerenciamento de Projetos:** Utilizei a metodologia Scrum para organizar sprints e entregas, gerenciando tarefas com o Trello e versionando o código com GitHub.
-  
-- **Desenvolvimento de Interface:** Criei interfaces gráficas usando `Tkinter` e editei elementos visuais com Photoshop, garantindo uma experiência amigável para o usuário.
-  
-- **Integração de Sistemas:** Desenvolvi habilidades de integração de sistemas, implementando reconhecimento de voz e conectando a assistente com APIs externas.
-</details>
+### **Hard Skills**
 
-### Soft Skills
-<details>
-  <summary><b>Clique para ver a lista de soft skills</b></summary>
+Durante o desenvolvimento do projeto, pude aprimorar diversas habilidades técnicas essenciais para o desenvolvimento de uma assistente virtual. Aqui estão as principais **hard skills** que adquiri:
 
-- **Trabalho em Equipe:** Colaborei ativamente com minha equipe, usando o Discord para comunicação remota e dividindo responsabilidades de forma eficiente.
+- **Desenvolvimento de Software**: Aprofundei meus conhecimentos em Python, criando funcionalidades essenciais para a assistente virtual, como o reconhecimento de voz e a execução de comandos.
+  
+- **Uso de Bibliotecas Python**: Integrei diversas bibliotecas como `SpeechRecognition`, `Wikipedia`, `Tkinter` e `Winsound` para implementar funcionalidades que permitiram à assistente realizar múltiplas tarefas simultaneamente.
+  
+- **Gerenciamento de Projetos**: Utilizei a metodologia Scrum para organizar as sprints e as entregas, gerenciando as tarefas no Trello e versionando o código com GitHub, o que garantiu um fluxo de trabalho eficiente.
+  
+- **Desenvolvimento de Interface Gráfica**: Criei interfaces gráficas amigáveis com a biblioteca `Tkinter`, proporcionando uma experiência de usuário agradável e intuitiva.
+  
+- **Integração de Sistemas**: Desenvolvi a integração do sistema de reconhecimento de voz com APIs externas, permitindo que a assistente interagisse de forma mais eficiente com o usuário.
 
-- **Gestão do Tempo:** Segui rigorosamente o cronograma de entregas e sprints, demonstrando habilidades de organização e respeito aos prazos.
+---
 
-- **Comunicação:** Produzi documentação detalhada e apresentei o projeto em uma feira de soluções, aprimorando minhas habilidades de comunicação e apresentação.
+### **Soft Skills**
 
-- **Resolução de Problemas:** Enfrentei e resolvi desafios técnicos, ajustando funcionalidades com base em feedbacks e requisitos, mostrando uma abordagem prática e proativa.
-</details>
+Além das habilidades técnicas, também trabalhei no desenvolvimento de habilidades interpessoais essenciais para o sucesso em um projeto colaborativo. Aqui estão as principais **soft skills** que desenvolvi durante o projeto:
+
+- **Trabalho em Equipe**: Trabalhei ativamente com minha equipe, utilizando o Discord para comunicação remota e colaborando na divisão de responsabilidades de forma eficaz.
+
+- **Gestão do Tempo**: Organizei meu tempo de forma eficiente para cumprir os prazos definidos no planejamento das sprints, respeitando rigorosamente os cronogramas de entrega.
+
+- **Comunicação**: Produzi documentação detalhada e apresentei o projeto em uma feira de soluções, melhorando minha capacidade de comunicar ideias de forma clara e objetiva.
+
+- **Resolução de Problemas**: Enfrentei desafios técnicos ao longo do projeto e, com base em feedbacks e requisitos, fiz ajustes nas funcionalidades para melhorar o desempenho da assistente virtual.
+
+---
 
 ## Contribuições Individuais
 
@@ -118,17 +122,162 @@ os.startfile("output.wav")
 Neste código, o áudio é gravado por 5 segundos e salvo como um arquivo .wav. A biblioteca sounddevice captura o áudio, e a gravação é então reproduzida automaticamente.
 </details>
 
+---
+
+## Contribuições Coletivas
+### Pomodoro
+<details> <summary><b>Clique para ver o código e explicação</b></summary>
+
+```python
+ elif 'pomodoro' in comando:
+
+            t_now = dt.datetime.now()  # data e hora atual;
+
+            t_pom = 25 * 60  # tempo de duração do fluxo pomodoro 25m;
+
+            t_delta = dt.timedelta(0, t_pom)  # diferença de tempo;
+
+            t_fut = t_now + t_delta  # hora que o pomodoro termina e começa a pausa;
+
+            delta_sec = 5 * 60  # definição de intervalo;
+
+            t_fin = t_now + dt.timedelta(0, t_pom + delta_sec)  # hora que a pausa termina;
+
+            pomodoro = pyttsx3.init()
+
+            pomodoro.say("Pomodóro iniciado " "\n\nAgora é " + t_now.strftime(
+
+                "%H:%M") + " hrs. \n\nTemporizador definido por 25 minutos")
+
+            pomodoro.runAndWait()
+
+            total_pomodoros = 0
+
+            breaks = 0
+
+            # Looping simples dividido em três seções: Hora pomodoro, intervalo e fim do código;
+
+            while True:
+
+                if dt.datetime.now() < t_fut:
+
+                    print('Pomodóro')
+
+                elif t_fut <= dt.datetime.now():
+
+                    if total_pomodoros in range(3, 100, 5):
+
+                        for i in range(1):
+                            winsound.Beep((i + 400), 500)  # Primeiro número é referente ao volume do bip.
+
+                        print('Hora do intervalo! Você tem 25 minutos de descanso.')
+
+                        breaks += 1
+
+                        audio = sr.Recognizer()
+
+                        pomodoro = pyttsx3.init()
+
+                        pomodoro.say('Hora do intervalo!')
+
+                        pomodoro.runAndWait()
+
+                        time.sleep(
+                            5)  # Por conta do delay da fala subtrair do tempo de pausa um tempo,então o que era pra ser 25 min ficou 21 min
+
+                        print("Foi")
+
+                    if breaks == 0:
+
+                        for i in range(2):
+                            winsound.Beep((i + 400), 700)  # Primeiro número é referente ao volume do bip.
+
+                        print('Hora do intervalo!')
+
+                        breaks += 1
+
+                        audio = sr.Recognizer()
+
+                        pomodoro = pyttsx3.init()
+
+                        pomodoro.say('Hora do intervalo! Você tem 5 minutos de descanso.')
+
+                        pomodoro.runAndWait()
+
+                        time.sleep(
+                            5)  # Por conta do delay da fala subtrair do tempo de pausa um tempo,então o que era pra ser 5 min ficou o tempo determinado como 1260 dividido por 5, pra ficar um descanso proporcional.
+
+                    else:
+
+                        print('Fim')
+
+                        breaks = 0
+
+                        for i in range(1):
+                            winsound.Beep((i + 400), 700)  # Primeiro número é referente ao volume do bip.
+
+                            audio = sr.Recognizer()
+
+                            pomodoro = pyttsx3.init()
+
+                            pomodoro.say('O intervalo acabou, deseja iniciar um novo pomodóro?')
+
+                            pomodoro.runAndWait()
+
+                        usr_ans = messagebox.askyesno("Fim da primeira sequência do pomodóro",
+
+                                                      "Deseja iniciar outra sequência de pomodóro?")
+
+                        total_pomodoros += 1
+
+                        print(total_pomodoros)
+
+                        if usr_ans == True:
+
+                            t_now = dt.datetime.now()
+
+                            t_fut = t_now + dt.timedelta(0, t_pom)
+
+                            t_fin = t_now + dt.timedelta(0, t_pom + delta_sec)
+
+
+                        elif usr_ans == False:
+
+                            msg = messagebox.showinfo("Fim do pomodóro",
+
+                                                      "\nVocê completou " + str(total_pomodoros) + " pomodóro(s) hoje!")
+
+                            break
+
+                    print("sleeping")
+
+                    time.sleep(1)
+
+                    t_now = dt.datetime.now()
+
+                    timenow = t_now.strftime("%H:%M")
+```
+
+Neste código, implementamos um sistema de Pomodoro, um método de gestão de tempo que alterna entre períodos de foco (25 minutos) e intervalos (5 minutos). O processo se inicia quando o usuário diz "pomodoro" para a assistente virtual. A assistente então inicia um temporizador de 25 minutos, durante o qual a tarefa de "Pomodoro" é executada. Quando o tempo de trabalho termina, a assistente avisa sobre o intervalo.
+
+Minha contribuição neste código foi focada na lógica de tempo para o ciclo Pomodoro, garantindo que os intervalos e os tempos de trabalho fossem corretamente calculados e seguissem a metodologia proposta. Além disso, fui responsável por integrar o reconhecimento da palavra-chave "pomodoro", permitindo que a assistente identificasse e iniciasse o ciclo Pomodoro quando o usuário falasse a palavra.
+</details>
+
+
+---
+
 ## Tecnologias Utilizadas
-- Python: A principal linguagem de programação usada para a lógica e funcionalidades da assistente.
-- Tkinter: Biblioteca utilizada para desenvolver a interface gráfica.
-- SpeechRecognition: Usada para o reconhecimento de voz e interpretação de comandos.
-- Pyttsx3: Biblioteca de síntese de voz para interagir com o usuário por meio de respostas audíveis.
+
+- **Python**: Linguagem de programação principal utilizada para implementar a lógica da assistente virtual, integrando as funcionalidades de reconhecimento de voz, processamento de comandos e interação com o usuário.
+  
+- **Tkinter**: Biblioteca para criação da interface gráfica, permitindo o desenvolvimento de uma interface simples, mas eficiente, para interação com o usuário.
+  
+- **SpeechRecognition**: Biblioteca responsável pelo reconhecimento de voz, que possibilita à assistente virtual entender os comandos do usuário e executar ações com base nisso.
+  
+- **Pyttsx3**: Biblioteca de síntese de voz, utilizada para permitir que a assistente virtual responda ao usuário de forma audível, tornando a experiência mais interativa e acessível.
+
+---
 
 ## Conclusão
 
-Este projeto foi um marco fundamental no meu desenvolvimento como desenvolvedor, pois me proporcionou uma visão mais ampla e profunda das várias etapas de criação de um software completo, desde a concepção até a implementação final. Trabalhar na BETA me ensinou a importância de equilibrar a parte técnica com as necessidades reais dos usuários. 
-
-Aprender a integrar diferentes bibliotecas e sistemas, enquanto gerenciava o tempo e as entregas em equipe, foi uma experiência desafiadora e recompensadora. Além disso, a implementação de algoritmos de reconhecimento de voz e a criação de uma interface gráfica amigável me fizeram perceber como a tecnologia pode ser poderosa quando aplicada para facilitar a vida das pessoas. 
-
-A criação da assistente virtual BETA foi um divisor de águas no meu aprendizado. Ela me ajudou a amadurecer tanto tecnicamente quanto em habilidades interpessoais, mostrando como a colaboração, a comunicação e a capacidade de resolver problemas são essenciais para o sucesso de um projeto. Este projeto me preparou para enfrentar desafios maiores, com confiança de que posso aplicar soluções eficazes e inovadoras em futuros desenvolvimentos.
-
+Este projeto foi um grande desafio, principalmente ao integrar a metodologia Scrum e utilizar o Python para desenvolver um projeto real. Desde a criação do ambiente até a utilização das bibliotecas e a lógica de programação para o sistema, cada etapa exigiu dedicação e aprendizado. Embora desafiador, esse processo foi extremamente enriquecedor e contribuiu significativamente para meu crescimento como desenvolvedora.
