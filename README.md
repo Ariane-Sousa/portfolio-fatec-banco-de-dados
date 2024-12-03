@@ -1,26 +1,49 @@
-# Portfólio dos Projetos Integradores
+# Portfólio de Projetos Integradores
 
-Este portfólio é o resultado dos meus Projetos Integradores, desenvolvidos ao longo do curso e focados na criação de APIs. Ele representa uma parte essencial da minha trajetória acadêmica na Faculdade de Tecnologia de São José dos Campos, onde estou em busca do título de Tecnóloga em Banco de Dados.
+Este portfólio reúne os projetos desenvolvidos ao longo do curso, com foco na abordagem de **Aprendizado por Projetos Integradores (API)**. Ele reflete uma parte essencial da minha trajetória acadêmica na **Faculdade de Tecnologia de São José dos Campos**, onde estou em busca do título de **Tecnóloga em Banco de Dados**.
+
+---
 
 ## Sobre mim
 
-Olá, eu sou **Ariane Cristine Alves de Sousa**, uma apaixonada por tecnologia e atualmente trabalhando como **desenvolvedora de software júnior**. Minha carreira está só começando, mas já tenho uma sólida experiência em diferentes áreas do desenvolvimento, tanto no front-end quanto no back-end.
+Olá! Sou **Ariane Cristine Alves de Sousa**, uma apaixonada por tecnologia em início de carreira como **desenvolvedora de software júnior**. Minha jornada no desenvolvimento tem sido enriquecida por experiências práticas no **front-end** e **back-end**, permitindo-me explorar diferentes facetas da área.
 
-Atualmente, trabalho com **JavaScript**, utilizando o framework **Vue.js** para criar interfaces web interativas e dinâmicas. Para a estilização, costumo usar o framework **Bulma**, que me permite desenvolver páginas com um design moderno e responsivo. No back-end, minha principal ferramenta é **Python**, onde desenvolvo aplicações robustas com **Django**, um framework conhecido pela sua simplicidade e eficiência.
+### Minhas principais competências:
+- **Front-end:** 
+  - Linguagem: **JavaScript**
+  - Framework: **Vue.js**
+  - Estilização: **Bulma**
 
-Além dessas tecnologias, estou sempre buscando expandir meus conhecimentos. Tenho familiaridade com bancos de dados como **MySQL** e **MongoDB**, e estou continuamente aprimorando minhas habilidades em arquitetura de APIs, gerenciamento de dados, e otimização de performance em sistemas distribuídos.
+- **Back-end:** 
+  - Linguagem: **Python**
+  - Framework: **Django**
 
-O que mais me motiva no desenvolvimento de software é a oportunidade de resolver problemas complexos de forma criativa e eficiente. Acredito que a tecnologia pode transformar o mundo, e é essa crença que me impulsiona a aprender e a crescer a cada novo desafio.
+- **Banco de Dados:** 
+  - Relacionais: **MySQL**
+  - Não relacionais: **MongoDB**
 
-Sou dedicada à minha formação contínua e estou sempre atenta às últimas tendências tecnológicas, seja no desenvolvimento web, automação de processos ou novas abordagens de usabilidade. Com isso, estou determinada a fazer uma contribuição positiva para a indústria, colaborando em projetos que agreguem valor e inovação.
+### O que me motiva
+Sou fascinada pela resolução criativa de problemas e pelo impacto que a tecnologia pode gerar na vida das pessoas e nas empresas. Estou sempre buscando aprimorar minhas habilidades em áreas como:
+- Arquitetura de APIs
+- Gerenciamento de dados
+- Otimização de sistemas distribuídos
 
-## Meus Projetos
+Tenho um compromisso constante com a **formação contínua** e acompanho as **tendências tecnológicas**, incluindo desenvolvimento web, automação de processos e usabilidade. Meu objetivo é colaborar em projetos que unam inovação e impacto positivo, contribuindo para a evolução da indústria.
 
-### Semestres
+---
 
-- [Semestre 1](./semestre1/README.md)
-- [Semestre 2](./semestre2/README.md)
-- [Semestre 3](./semestre3/README.md)
-- [Semestre 4](./semestre4/README.md)
-- [Semestre 5](./semestre5/README.md)
-- [Semestre 6](./semestre6/README.md)
+## Projetos por Semestre
+
+Explore os projetos desenvolvidos em cada etapa do curso:
+
+- [1º Semestre/2022 - Assistente Virtual - Beta](./semestre1/README.md)
+- [2º Semestre/2022 - Sistema de Gerenciamento de Vagas](./semestre2/README.md)
+- [3º Semestre/2023 - Sistema de Predição de Vendas](./semestre3/README.md)
+- [4º Semestre/2023 - Sistema de Inspeções Prediais](./semestre4/README.md)
+- [5º Semestre/2024 - Sistema de Processamento de Contas](./semestre5/README.md)
+- [6º Semestre/2024 - Sistema de Previsão e Qualificação de Ativos Financeiros com Machine Learning](./semestre6/README.md)
+
+Cada projeto reflete o aprendizado e a aplicação prática dos conhecimentos adquiridos em sala de aula, destacando a evolução das minhas habilidades técnicas e colaborativas.
+
+---
+
