@@ -1,4 +1,4 @@
-### Tecsus
+### Sistema de Processamento de Contas - Tecsus
 5° Semestre - 01/2024
 
 Parceiro Acadêmico: Tecsus
@@ -10,6 +10,44 @@ A TecSUS atua na coleta e processamento de contas de energia, água e gás para 
 Cada unidade de um cliente pode ter múltiplos contratos — seja de água, energia ou gás — e cada contrato pode gerar várias contas (ou faturas) mensalmente. Esses contratos estão vinculados a concessionárias específicas, responsáveis pelo fornecimento dos serviços.
 
 Atualmente, a TecSUS conta com um banco de dados desestruturado, em formato de arquivo texto, contendo informações sobre unidades, contratos, contas e concessionárias. O objetivo da empresa é implementar técnicas de ETL (Extração, Transformação e Carregamento) para organizar esses dados, além de explorar ferramentas de visualização que proporcionem uma visão clara e estratégica das informações, aprimorando a gestão e as oportunidades de otimização para os clientes.
+
+---
+
+## Lições Aprendidas
+
+### **Hard Skills**
+
+Durante o desenvolvimento do projeto, pude aprimorar diversas habilidades técnicas essenciais para o desenvolvimento de uma assistente virtual. Aqui estão as principais **hard skills** que adquiri:
+
+- **Desenvolvimento Web**: Aprofundei meus conhecimentos em HTML, CSS e JavaScript, criando uma interface responsiva e intuitiva para oferecer uma experiência de usuário agradável.
+
+- **Vue.js**: Desenvolvi componentes dinâmicos e interativos com Vue.js, aperfeiçoando habilidades em criação de interfaces modernas, responsivas e reativas.
+
+- **Django**: Estruturei o Back-End com Django, implementando autenticação e segurança para garantir o gerenciamento seguro de dados, além de construir APIs RESTful que permitem integração eficiente com o Front-End.
+
+- **Python**: Utilizei Python para manipular dados e estruturar toda a lógica de negócios, aumentando a produtividade e garantindo um código eficiente e bem-organizado.
+
+---
+
+### **Soft Skills**
+
+Além das habilidades técnicas, também trabalhei no desenvolvimento de habilidades interpessoais essenciais para o sucesso em um projeto colaborativo. Aqui estão as principais **soft skills** que desenvolvi durante o projeto:
+
+- **Trabalho em Equipe**: Colaborei de forma eficaz com a equipe, definindo requisitos, priorizando tarefas e alinhando prazos, desenvolvendo habilidades de comunicação e cooperação para alcançar objetivos compartilhados.
+
+- **Resolução de Problemas**: Enfrentei e solucionei desafios técnicos durante o desenvolvimento, buscando soluções inovadoras para problemas complexos e aprimorando minha capacidade de adaptação em situações críticas.
+
+- **Gerenciamento de Tempo**: Organizei meu tempo de forma eficiente, equilibrando as demandas do projeto com outras responsabilidades, o que me permitiu cumprir prazos e manter a qualidade em todas as entregas.
+
+- **Aprendizado Contínuo**: Investi em desenvolver novas habilidades e expandir meus conhecimentos, sempre em busca de aprimoramento técnico e pessoal para melhorar minha performance e agregar valor aos projetos.
+
+- **Adaptabilidade**: Mantive a flexibilidade em meio a mudanças e novos desafios, ajustando estratégias rapidamente e garantindo o andamento dos projetos com foco em resultados e soluções.
+
+- **Comunicação Eficaz**: Apliquei uma comunicação clara e objetiva para manter a equipe alinhada, compartilhar avanços e apresentar resultados, promovendo um ambiente de colaboração e confiança.
+
+- **Proatividade**: Tomei iniciativa em situações desafiadoras, identificando oportunidades de melhoria no projeto e contribuindo para decisões estratégicas que beneficiaram o desenvolvimento do software.
+
+---
 
 ## Contribuições Individuais
 <details>
@@ -134,7 +172,7 @@ Para contratos, são verificados e criados registros de fornecedores e endereço
 <details>
 <summary><b>Relatório Mensal de Energia</b></summary>
 <br>
-<p>O código acima implementa o controlador de autenticação (AuthController), responsável por lidar com as solicitações de autenticação dos usuários. Aqui está uma explicação detalhada do que acontece no código:</p>
+<p>O código abaixo implementa o controlador de autenticação (AuthController), responsável por lidar com as solicitações de autenticação dos usuários. Aqui está uma explicação detalhada do que acontece no código:</p>
 
 ```python
 from datetime import datetime, timedelta
@@ -192,52 +230,128 @@ Esses cálculos permitem à aplicação identificar variações nos custos e env
 </p>
 </details>
 
+
+<details>
+<summary><b>Testes unitários</b></summary>
+
+```javascript
+import { mount } from '@vue/test-utils';
+import Upload from '@/views/Upload.vue';
+
+describe('Upload', () => {
+  
+  it('renderiza corretamente', () => {
+    const wrapper = mount(Upload);
+    expect(wrapper.exists()).toBe(true);
+  });
+
+  it('clears data when clearData method is called', async () => {
+    const wrapper = mount(Upload);
+    
+    wrapper.vm.fileInputValue = 'fake file';
+    wrapper.vm.countTypeValue = 'agua';
+    wrapper.vm.documentTypeValue = 'contrato';
+
+    await wrapper.vm.clearData();
+
+    // Verificação da função de limpar dados
+    expect(wrapper.vm.fileInputValue).toBe(null);
+    expect(wrapper.vm.countTypeValue).toBe(null);
+    expect(wrapper.vm.documentTypeValue).toBe(null);
+  });
+
+});
+```
+## **Resumo sobre os Testes Unitários Implementados**
+
+Implementei testes unitários no sistema para garantir a funcionalidade e confiabilidade do código. Como parte dessa melhoria, o repositório agora está protegido por um **hook de commit**, que impede que commits sejam realizados caso algum teste unitário falhe. Isso assegura que apenas código validado seja integrado ao projeto.
+
+### **Descrição dos Testes Implementados**
+
+#### **Componente Upload**
+O componente `Upload.vue` foi testado para validar seu comportamento esperado:
+
+1. **Renderização do Componente**
+   - O teste verifica se o componente é renderizado corretamente ao ser montado.  
+   - Resultado esperado: O componente deve existir na árvore DOM.
+
+2. **Limpeza de Dados**
+   - O método `clearData` do componente foi testado para garantir que ele redefine os valores de entrada corretamente.  
+   - Resultado esperado: Após a execução do método, os valores de `fileInputValue`, `countTypeValue`, e `documentTypeValue` devem ser `null`.
+
+### **Impacto**
+Com a implementação dos testes e a configuração do **hook de commit**, o fluxo de desenvolvimento foi aprimorado. Esse mecanismo:
+- Eleva a qualidade do código ao prevenir a inclusão de alterações com falhas.
+- Oferece maior segurança para a equipe de desenvolvimento, reduzindo o risco de regressões.
+</details>
+
+## Contribuições Coletivas
+### Modelagem
+<details> <summary><b>Clique para ver o código e explicação</b></summary>
+
+```python
+from django.db import models
+
+
+class FornecedorAgua(models.Model):
+    id_fornecedor_agua = models.AutoField(primary_key=True)
+    fornecedor = models.CharField(max_length=255)
+    cod_companhia = models.CharField(max_length=255)
+    planta = models.CharField(max_length=255)
+    codigo_de_ligacao_rgi = models.CharField(max_length=255, unique=True)
+
+
+class Endereco(models.Model):
+    id_endereco = models.AutoField(primary_key=True)
+    endereco_instalacao = models.CharField(max_length=255)
+    cidade = models.CharField(max_length=255)
+    codigo_de_ligacao_rgi = models.CharField(max_length=255, null=True)
+
+
+class ClienteContrato(models.Model):
+    nome_contrato = models.CharField(max_length=255, null=True)
+    email = models.EmailField()
+    ativo = models.CharField(max_length=255)
+    numero_contrato = models.BigIntegerField(null=True)
+    numero_cliente = models.BigIntegerField(null=True)
+    codigo_de_ligacao_rgi = models.CharField(max_length=255, primary_key=True)
+
+
+class FatoContratoAgua(models.Model):
+    id_contrato_agua = models.AutoField(primary_key=True)
+    codigo_de_ligacao_rgi = models.ForeignKey(ClienteContrato, on_delete=models.CASCADE)
+    id_endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE)
+    consumo_agua_m3 = models.DecimalField(max_digits=1000, decimal_places=2)
+    consumo_esgoto_m3 = models.DecimalField(max_digits=1000, decimal_places=2)
+    vlr_agua = models.DecimalField(max_digits=1000, decimal_places=2)
+    vlr_esgoto = models.DecimalField(max_digits=1000, decimal_places=2)
+    vlr_total = models.DecimalField(max_digits=1000, decimal_places=2)
+    leitura_anterior = models.DateField(null=True)
+    leitura_atual = models.DateField(null=True)
+```
+Contribuí para a modelagem do sistema utilizando o **formato estrela**, que organiza os dados em torno de uma tabela principal (fato) conectada a tabelas de dimensão. Essa estrutura é amplamente utilizada em **data warehouses** para facilitar análises e relatórios.
+
+</details>
+
+---
+
 ## Tecnologias Utilizadas
 
-Django: Framework utilizado para desenvolver o Back-End do software, fornecendo uma estrutura robusta para o gerenciamento de dados, autenticação e segurança.
+- **Django**: Framework web que fornece uma estrutura robusta para o desenvolvimento do Back-End, incluindo gerenciamento de dados, autenticação e segurança.
 
-Python: Linguagem de programação usada para o desenvolvimento de toda a lógica de negócios e APIs no Back-End com Django.
+- **Python**: Linguagem de programação usada para implementar toda a lógica de negócios e as APIs no Back-End com Django.
 
-JavaScript: Linguagem de programação essencial para dinamizar a interface da aplicação e gerenciar a comunicação entre o Back-End e o Front-End.
+- **JavaScript**: Linguagem utilizada para adicionar interatividade à interface da aplicação e gerenciar a comunicação entre o Back-End e o Front-End.
 
-Vue.js: Framework JavaScript utilizado para construir a interface interativa da página, garantindo uma experiência de usuário ágil e responsiva.
+- **Vue.js**: Framework JavaScript responsável pela construção da interface do usuário, garantindo uma experiência ágil, responsiva e interativa.
 
-Oracle SQL: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar informações sobre usuários e autenticação, além de dados operacionais do sistema.
+- **PostgreSQL**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar informações de usuários, autenticação e dados operacionais da aplicação.
 
-## Lições Aprendidas
 
-<p align="justify"></p>
 
-<h3>Hard Skills</h3>
-<details>
-  <summary>Veja mais</summary>
-  
-  <p1><strong>Desenvolvimento Web:</strong> Aprofundei meus conhecimentos em HTML, CSS e JavaScript, criando uma interface responsiva e intuitiva para oferecer uma experiência de usuário agradável.</p1>
-  
-  <p1><strong>Vue.js:</strong> Desenvolvi componentes dinâmicos e interativos com Vue.js, aperfeiçoando habilidades em criação de interfaces modernas, responsivas e reativas.</p1>
-  
-  <p1><strong>Django:</strong> Estruturei o Back-End com Django, implementando autenticação e segurança para garantir o gerenciamento seguro de dados, além de construir APIs RESTful que permitem integração eficiente com o Front-End.</p1>
-  
-  <p1><strong>Python:</strong> Utilize o Python para manipular dados e estruturar toda a lógica de negócios, aumentando a produtividade e garantindo um código eficiente e bem-organizado.</p1>
-  
-  <p1><strong>Oracle SQL:</strong> Trabalhei com Oracle SQL para estruturar e manter um banco de dados relacional robusto, garantindo o armazenamento seguro de informações sensíveis e gerenciando consultas complexas com eficiência.</p1>
-</details>
+---
 
-<h3>Soft Skills</h3>
-<details>
-  <summary>Veja mais</summary>
-  <p1><strong>Trabalho em Equipe:</strong> Colaborei de forma eficaz com a equipe, definindo requisitos, priorizando tarefas e alinhando prazos, desenvolvendo habilidades de comunicação e cooperação para alcançar objetivos compartilhados.</p1>
-  
-  <p1><strong>Resolução de Problemas:</strong> Enfrentei e solucionei desafios técnicos durante o desenvolvimento, buscando soluções inovadoras para problemas complexos e aprimorando minha capacidade de adaptação em situações críticas.</p1>
-  
-  <p1><strong>Gerenciamento de Tempo:</strong> Organizei meu tempo de forma eficiente, equilibrando as demandas do projeto com outras responsabilidades, o que me permitiu cumprir prazos e manter a qualidade em todas as entregas.</p1>
-  
-  <p1><strong>Aprendizado Contínuo:</strong> Investi em desenvolver novas habilidades e expandir meus conhecimentos, sempre em busca de aprimoramento técnico e pessoal para melhorar minha performance e agregar valor aos projetos.</p1>
-  
-  <p1><strong>Adaptabilidade:</strong> Mantive a flexibilidade em meio a mudanças e novos desafios, ajustando estratégias rapidamente e garantindo o andamento dos projetos com foco em resultados e soluções.</p1>
-  
-  <p1><strong>Comunicação Eficaz:</strong> Apliquei uma comunicação clara e objetiva para manter a equipe alinhada, compartilhar avanços e apresentar resultados, promovendo um ambiente de colaboração e confiança.</p1>
-  
-  <p1><strong>Proatividade:</strong> Tomei iniciativa em situações desafiadoras, identificando oportunidades de melhoria no projeto e contribuindo para decisões estratégicas que beneficiaram o desenvolvimento do software.</p1>
-  
-</details>
+## Conclusão
+Durante o desenvolvimento deste projeto, aprofundei meus conhecimentos em tecnologias essenciais como Django e Vue.js, aprendendo a construir uma arquitetura robusta e eficiente. O domínio de Python e JavaScript foi consolidado com a criação de lógicas de negócios e interatividade no Front-End. 
+
+Além disso, o uso de Oracle SQL me permitiu compreender a importância de uma modelagem de dados bem estruturada para atender às demandas de um sistema real. Esses aprendizados foram fundamentais para meu crescimento técnico e profissional.
