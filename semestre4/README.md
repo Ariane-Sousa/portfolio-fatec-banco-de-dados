@@ -197,6 +197,8 @@ public class AuthController {
 <p>O AuthController recebe solicitações POST na rota `/api/auth/login`, onde um objeto `AuthRequest` contendo o nome de usuário, senha e tipo de documento é enviado no corpo da solicitação. Dependendo do tipo de documento (cnpj ou cpf), o método `login()` chama o serviço de autenticação apropriado (`authenticateCliente` ou `authenticateFuncionario`). Se o tipo de documento não for válido, uma resposta de status 400 é retornada.</p>
 </details>
 
+---
+
 ## Contribuições Coletivas
 ### Envio de E-mail e PDF
 <details> <summary><b>Clique para ver o código e explicação</b></summary>
@@ -244,6 +246,7 @@ Minha contribuição nesse código foi o desenvolvimento da funcionalidade de en
 
 </details>
 
+---
 
 ## **Tecnologias Utilizadas**
 
@@ -254,6 +257,8 @@ Minha contribuição nesse código foi o desenvolvimento da funcionalidade de en
 - **Oracle SQL**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar informações sobre usuários, autenticação e dados do sistema, garantindo alta performance e segurança.
 
 - **Figma**: Ferramenta de design utilizada para o desenvolvimento e prototipação das wireframes, facilitando o processo de criação da interface e alinhamento de ideias com a equipe.
+
+---
 
 ## **Conclusão**
 
