@@ -1,11 +1,19 @@
-### Jaia
+### Sistema de Inspeções Prediais - Jaia
 4° Semestre - 02/2023
 
 Parceiro Acadêmico: Jaia
 
+---
+
 ## 💻 Nossa proposta
 
-Jaia Software Em um cenário onde a paisagem urbana se compõe de uma mistura de edifícios modernos e históricos, a empresa Jaia, apresentou um desafio significativo. A condução de inspeções prediais estava provando ser uma tarefa morosa e suscetível a imprecisões. Diante desse cenário, a Jaia buscou soluções inovadoras para otimizar esse processo crucial. A visão estratégica da empresa contemplou o desenvolvimento de um software de inspeção predial, projetado para revolucionar a abordagem atual. A plataforma concebida promete oferecer uma experiência intuitiva, capacitando os inspetores a documentar minuciosamente detalhes relevantes e capturar evidências visuais de forma eficaz. Adicionalmente, a geração instantânea de relatórios abastecerá a tomada de decisões embasadas. A Jaia, reconhecendo a necessidade de aprimorar a qualidade e eficiência das inspeções, direcionou seus esforços para o desenvolvimento desse software inovador. O resultado obtido transcendeu as expectativas iniciais, beneficiando não somente a empresa, mas também elevando o padrão das inspeções prediais na esfera urbana, contribuindo, assim, para uma maior segurança e excelência nas estruturas urbanas.
+Diante do cenário urbano atual, que combina construções modernas e históricas, a empresa Jaia enfrentava um desafio significativo: o processo de inspeção predial era demorado e sujeito a imprecisões. Buscando otimizar essa tarefa essencial, a Jaia se empenhou em desenvolver uma solução inovadora.
+
+A proposta da empresa foi criar um software de inspeção predial que pudesse transformar o processo atual, tornando-o mais eficiente e preciso. A plataforma foi pensada para oferecer uma experiência intuitiva, permitindo que os inspetores documentem com precisão detalhes importantes e capturem evidências visuais de maneira eficaz. Além disso, a geração imediata de relatórios apoiaria a tomada de decisões mais ágeis e fundamentadas.
+
+Com o objetivo de melhorar a qualidade e a eficiência das inspeções, a Jaia investiu no desenvolvimento dessa tecnologia, que superou as expectativas iniciais. O impacto do software não se limitou à empresa, mas também contribuiu para elevar o padrão das inspeções prediais, promovendo maior segurança e excelência nas estruturas urbanas.
+
+---
 
 ## Modelagem do Banco
 
@@ -14,6 +22,34 @@ Jaia Software Em um cenário onde a paisagem urbana se compõe de uma mistura de
 
 ### <p align="center">Mer</p>
 <p align="center"><img src="./model-mer.png" widht="20%"></img>
+
+---
+
+## Lições Aprendidas
+
+### **Hard Skills**
+
+Durante o desenvolvimento do projeto, pude aprimorar diversas habilidades técnicas essenciais para o desenvolvimento de uma assistente virtual. Aqui estão as principais **hard skills** que adquiri:
+
+- **Desenvolvimento Web**: Aprofundei meu conhecimento em HTML, CSS e JavaScript, implementando uma landing page responsiva e intuitiva para promover o serviço de inspeção predial.
+  
+- **Vue.js**: Aprendi a construir componentes dinâmicos e interativos utilizando o framework Vue.js, proporcionando uma experiência de usuário mais fluida.
+
+- **Spring Boot**: Utilizei o Spring Boot para implementar a lógica de autenticação do sistema, facilitando o desenvolvimento e garantindo a segurança das informações dos usuários.
+
+---
+
+### **Soft Skills**
+
+Além das habilidades técnicas, também trabalhei no desenvolvimento de habilidades interpessoais essenciais para o sucesso em um projeto colaborativo. Aqui estão as principais **soft skills** que desenvolvi durante o projeto:
+
+- **Trabalho em Equipe**: Colaborei com membros da equipe para definir requisitos, prioridades e prazos, demonstrando habilidades de comunicação e cooperação.
+
+- **Resolução de Problemas**: Enfrentei desafios técnicos durante o desenvolvimento do sistema, buscando soluções eficientes e adaptáveis para garantir a qualidade do produto final.
+
+- **Gerenciamento de Tempo**: Aprendi a gerenciar meu tempo de forma eficaz, equilibrando as demandas do projeto com outras responsabilidades e compromissos pessoais.
+
+---
 
 ## Contribuições Individuais
 <details>
@@ -161,34 +197,68 @@ public class AuthController {
 <p>O AuthController recebe solicitações POST na rota `/api/auth/login`, onde um objeto `AuthRequest` contendo o nome de usuário, senha e tipo de documento é enviado no corpo da solicitação. Dependendo do tipo de documento (cnpj ou cpf), o método `login()` chama o serviço de autenticação apropriado (`authenticateCliente` ou `authenticateFuncionario`). Se o tipo de documento não for válido, uma resposta de status 400 é retornada.</p>
 </details>
 
-## Tecnologias Utilizadas
-Spring Boot: Framework utilizado para desenvolver o Back-End do software.
+## Contribuições Coletivas
+### Envio de E-mail e PDF
+<details> <summary><b>Clique para ver o código e explicação</b></summary>
 
-Vue.js: Framework JavaScript utilizado para construir a interface interativa da página.
+```java
+async function generatePDFAndSendEmail() {
+  try {
+    const pdfData = await getPdfData();
+    const pdfFileName = 'ordem_servico.pdf';
+    const email = ordem_servicoSelected.value?.id_req.fk_cliente_id.email;
+    if (typeof email === 'string') {
+      const assunto = 'Predial - Seja bem-vindo(a) | Ordem de Serviço';
+      const corpo = `<p>Olá, ${ordem_servicoSelected.value?.id_req.fk_cliente_id.nome}! Bem-vindo(a) ao Predial!</p>` +
+                   `<p>Sua Ordem de Serviço gerada a partir da Requisição: ${ordem_servicoSelected.value?.id_req.nome} Foi Aprovada <br /></p>` +
+                   `<p>Segue em anexo o PDF com mais informações: ${pdfFileName}</p>`;
+      const formData = new FormData();
+      formData.append('recipient', email);
+      formData.append('subject', assunto);
+      formData.append('body', corpo);
+      formData.append('pdfData', new Blob([pdfData], { type: 'application/pdf' }), pdfFileName);
+      const response = await axios.post('http://localhost:8080/email/send', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      window.alert('E-mail enviado com sucesso!')
+    } else {
+      window.alert('Endereço de e-mail inválido.');
+    }
+  } catch (error) {
+    console.error(error);
+    window.alert('Erro ao enviar o e-mail.');
+  }
+}
+```
+Este código implementa a geração de um PDF e o envio de um e-mail para um usuário quando uma Ordem de Serviço é aprovada. Ele utiliza uma função assíncrona para realizar as seguintes etapas:
 
-Oracle SQL: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar informações sobre usuários e autenticação.
+- Geração do PDF: O código chama a função getPdfData() para obter os dados necessários para a criação do PDF.
+- Obtenção do E-mail do Cliente: O e-mail do cliente é extraído a partir de ordem_servicoSelected, que contém os dados da Ordem de Serviço aprovada.
+- Preparação do E-mail: O assunto e o corpo do e-mail são configurados, incluindo um texto personalizado com o nome do cliente e informações sobre a ordem de serviço.
+- Envio do E-mail: Um FormData é criado contendo o e-mail, assunto, corpo da mensagem e o PDF gerado. Em seguida, a requisição é enviada via axios para um endpoint do backend (/email/send), que provavelmente processa o envio do e-mail com o anexo do PDF.
+- Alertas de Sucesso ou Erro: O código exibe alertas para o usuário, informando se o envio do e-mail foi bem-sucedido ou se ocorreu algum erro.
+  
+Minha contribuição nesse código foi o desenvolvimento da funcionalidade de envio de e-mail e PDF para o usuário. Especificamente, implementei a lógica para garantir que, quando uma Ordem de Serviço fosse aprovada, o cliente recebesse um e-mail com o PDF da ordem gerada, garantindo um processo automatizado e eficiente para comunicação com os clientes.
 
-Figma: utilizado para o desenvolvimento e prototipação das wireframes.
-
-## Lições Aprendidas
-
-<p align="justify"></p>
-
-<h3>Hard Skills</h3>
-<details>
-  <p1>Desenvolvimento Web: Aprofundei meu conhecimento em HTML, CSS e JavaScript, implementando uma landing page responsiva e intuitiva para promover o serviço de inspeção predial.</p1>
-  <p1>Vue.js: Aprendi a construir componentes dinâmicos e interativos utilizando o framework Vue.js, proporcionando uma experiência de usuário mais fluida.</p1>
-  <p1>Spring Boot: Utilizei o Spring Boot para implementar a lógica de autenticação do sistema, facilitando o desenvolvimento e garantindo a segurança das informações dos usuários.</p1>
-  <h3>Soft Skills</h3>
-  <p1>Trabalho em Equipe: Colaborei com membros da equipe para definir requisitos, prioridades e prazos, demonstrando habilidades de comunicação e cooperação.</p1>
-  <p1>Resolução de Problemas: Enfrentei desafios técnicos durante o desenvolvimento do sistema, buscando soluções eficientes e adaptáveis para garantir a qualidade do produto final.</p1>
-  <p1>Gerenciamento de Tempo: Aprendi a gerenciar meu tempo de forma eficaz, equilibrando as demandas do projeto com outras responsabilidades e compromissos pessoais.</p1>
 </details>
 
-</details>
-<h3>Soft Skills</h3>
-<details>
- <p1>Trabalho em Equipe: Colaborei com membros da equipe para definir requisitos, prioridades e prazos, demonstrando habilidades de comunicação e cooperação.</p1>
-  <p1>Resolução de Problemas: Enfrentei desafios técnicos durante o desenvolvimento do sistema, buscando soluções eficientes e adaptáveis para garantir a qualidade do produto final.</p1>
-  <p1>Gerenciamento de Tempo: Aprendi a gerenciar meu tempo de forma eficaz, equilibrando as demandas do projeto com outras responsabilidades e compromissos pessoais.</p1>
-</details>
+
+## **Tecnologias Utilizadas**
+
+- **Spring Boot**: Framework utilizado para desenvolver o Back-End do software, proporcionando uma estrutura robusta e fácil de usar para a construção de APIs e lógica de negócios.
+  
+- **Vue.js**: Framework JavaScript utilizado para construir a interface interativa da página, proporcionando uma experiência de usuário dinâmica e reativa.
+
+- **Oracle SQL**: Sistema de gerenciamento de banco de dados relacional utilizado para armazenar informações sobre usuários, autenticação e dados do sistema, garantindo alta performance e segurança.
+
+- **Figma**: Ferramenta de design utilizada para o desenvolvimento e prototipação das wireframes, facilitando o processo de criação da interface e alinhamento de ideias com a equipe.
+
+## **Conclusão**
+
+Este projeto me permitiu aprimorar minhas habilidades no desenvolvimento de aplicações web, tanto no front-end quanto no back-end. A integração entre o Vue.js para a interface interativa e o Spring Boot no back-end foi fundamental para a criação de uma solução fluida e funcional. 
+
+Além disso, a implementação de processos automatizados como o envio de e-mails com PDFs anexados melhorou a experiência do usuário e garantiu a eficiência no fluxo de trabalho da aplicação. A utilização de Oracle SQL para o gerenciamento de dados proporcionou a segurança e a escalabilidade necessárias para o sucesso do projeto. 
+
+Em resumo, o projeto não só atendeu às necessidades do sistema, mas também me proporcionou um aprendizado significativo em várias tecnologias e metodologias de desenvolvimento
